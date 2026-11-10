@@ -1,10 +1,3 @@
-# Use this VPC Data Source if your VPC already exists
-# Comment everything as of Line 7
-# Make sure to passe your VPC's name
-# data "ibm_is_vpc" "vpc" {
-#   name = "vpc-eu-de-iks"
-# }
-
 # a vpc
 resource "ibm_is_vpc" "vpc" {
   name                      = "${local.basename}-vpc"
@@ -40,10 +33,10 @@ resource "ibm_is_public_gateway" "pgw" {
 }
 
 # Enable SSH Inbound Rule
-resource "ibm_is_security_group_rule" "sg-rule-inbound-ssh" {
+resource "ibm_is_security_group_rule" "sg_rule_inbound_ssh" {
   group     = ibm_is_vpc.vpc.default_security_group
   direction = "inbound"
-  remote    = "0.0.0.0/0"
+  remote    = var.allowed_ssh_cidr
 
   protocol = "tcp"
   port_min = 22

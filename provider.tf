@@ -1,13 +1,22 @@
 terraform {
-  required_version = ">=1.14"
+  required_version = ">= 1.5"
+
   required_providers {
     ibm = {
       source  = "IBM-Cloud/ibm"
-      version = "2.9.0"
+      version = ">= 1.50"
     }
     tls = {
       source  = "hashicorp/tls"
-      version = "~> 4.0.4"
+      version = "~> 4.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5"
     }
   }
 }

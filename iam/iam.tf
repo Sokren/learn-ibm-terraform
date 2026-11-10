@@ -29,7 +29,6 @@ resource "ibm_iam_access_group_policy" "iam_create_user_api_key_service_id" {
   }
 }
 
-
 # ------------------------------------------------------------
 # VPC Infrastructure (is) resources (i.e. vpc)
 # List of Resource Attributes:
@@ -44,10 +43,7 @@ locals {
     "subnetId"        = "*"
     "securityGroupId" = "*"
     "networkAclId"    = "*"
-    "publicGatewayId"    = "*"
-    # "loadBalancerId"  = "*" # not used, included for completeness
-    # "flowLogCollectorId" = "*" # not used, included for completeness
-    # "vpnGatewayId"       = "*" # not used, included for completeness
+    "publicGatewayId" = "*"
   }
   # Types of resources required to be able to create a VSI
   is_instance_service_types = {
@@ -57,8 +53,6 @@ locals {
     "keyId"                     = "*"
     "volumeId"                  = "*"
     "virtualNetworkInterfaceId" = "*"
-    # "instanceGroupId" = "*" # not used, included for completeness
-    # "dedicatedHostId" = "*" # not used, included for completeness
   }
 }
 
@@ -89,7 +83,7 @@ resource "ibm_iam_access_group_policy" "policy_vpc" {
   resource_attributes {
     name     = "region"
     operator = "stringEquals"
-    value    = "eu-de"
+    value    = var.region
   }
 }
 
@@ -118,7 +112,6 @@ resource "ibm_iam_access_group_policy" "policy_vsi" {
   resource_attributes {
     name     = "region"
     operator = "stringEquals"
-    value    = "eu-de"
+    value    = var.region
   }
-
 }
